@@ -17,26 +17,21 @@ main:
     j exit
 
 print_binary:
-    li     $t0, 32              # t0 -> iteration count
+    li     $t9, 0x80000000
     move   $t5, $a0             # load input number
 
 loop:
-    slti   $t7, $t0, 32
-    srlv   $t5, $t5, $t7         # shift right
 
-    # extract i-th digit
-    and    $t2, $t5, $t7
+    and   $a0, $t5, $t9        # extract left-most digit
+    sltu  $a0, $0,  $a0
+    ori   $a0, $a0, 0x30       # set character
 
-    # character
-    addi   $t6, $t2, 0x30
-
-    li     $v0, 11
-    move   $a0, $t6
+    li       $v0, 11              # print character
     syscall
 
-    subi   $t0, $t0, 1         # decrement counter
+    srl    $t9, $t9, 1          # shift mask right
 
-    bne    $t0, 0, loop     # loop 32 times
+    bnez   $t9, loop        # loop 32 times
 
     li     $v0, 11             # print char
     li     $a0, '\n'
