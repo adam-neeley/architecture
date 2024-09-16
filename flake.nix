@@ -23,7 +23,7 @@
             xspim
             mars-mips
             (writeShellScriptBin "mars" ''
-              Mars
+              Mars nc $@
             '')
             (writeShellScriptBin "add-exit" ''
               #!/usr/bin/env bash
