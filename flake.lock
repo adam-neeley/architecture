@@ -1,6 +1,37 @@
 {
   "nodes": {
+    "nix-lib-monadam": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1726678874,
+        "narHash": "sha256-dT0ZktKRqioJv/E0HKhCuQk8DbZpQphhsrFeYT7KEcg=",
+        "owner": "adam-neeley",
+        "repo": "nix-lib-monadam",
+        "rev": "a556bde63e3792e583e45aa9b5281b8aed1f417c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "adam-neeley",
+        "repo": "nix-lib-monadam",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1723938990,
+        "narHash": "sha256-9tUadhnZQbWIiYVXH8ncfGXGvkNq3Hag4RCBEMUk7MI=",
+        "path": "/nix/store/wbqb2mw5kmh9bf04aqbd84c3j6a280h8-source",
+        "rev": "c42fcfbdfeae23e68fc520f9182dde9f38ad1890",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1724819573,
         "narHash": "sha256-GnR7/ibgIH1vhoy8cYdmXE6iyZqKqFxQSVkFgosBh6w=",
@@ -16,7 +47,8 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nix-lib-monadam": "nix-lib-monadam",
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
