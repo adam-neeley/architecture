@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1726679509,
-        "narHash": "sha256-jIJRqEVT8XImGtjrk0rCO6eobaj3BLTigTqJgAEb2do=",
+        "lastModified": 1726692445,
+        "narHash": "sha256-0fTU6meeqfFPcP+cqAmsIWFIn0t/po867AvW3uuBAdY=",
         "owner": "adam-neeley",
         "repo": "nix-lib-monadam",
-        "rev": "27c395a733c83187413bdce52a1db2c7593b3255",
+        "rev": "665524f0962c43228970f0dc39ffe96b28da9ab9",
         "type": "github"
       },
       "original": {
