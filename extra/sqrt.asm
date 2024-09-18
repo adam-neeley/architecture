@@ -1,45 +1,23 @@
 # find sqrt(3) using Newton's method
 
-# f(x)  = x^2 - 3
-# f'(x) = 2x
-# y     = x - 0.5x - 1.5/x
-
         .data
-loop_msg:  .asciiz "\nLoop\n"
-x:         .float  3.0
+loop_msg:  .asciiz ":\t"
+break_msg: .asciiz "\n"
+x:         .float  2.0
 c1:        .float  0.5
 c2:        .float  1.5
+zero:      .float  0.0
 
         .text
 main:
-
-    li         $t0, 10
-
+    la         $s0, 20
     lwc1       $f0, x
     lwc1       $f2, c1
     lwc1       $f4, c2
 
-    cvt.s.w    $f0, $f0
-    cvt.s.w    $f2, $f2
-    cvt.s.w    $f4, $f4
-            
-loop:
-    # TAKE IT FROM THERE
-    div.s $f5, $f4, $f0    # calc 1.5/x
-    div.s $f6, $f0, $f2    # calc x/2
-    sub.s $f0, $f0, $f5
-    sub.s $f0, $f0, $f6
-    
-    sub $t0, $t0, 1        # loop if iteration > 0
-
-    jal print
-
-    beq $t0, 0, exit
-    j loop
-
 print:
-    li $v0, 1              # print string
-    la $a0, ($t0)
+    li $v0, 1              # print iteration (int)
+    la $a0, ($s0)
     syscall
 
     li $v0, 4              # print string
@@ -50,7 +28,27 @@ print:
     mov.s $f12, $f0
     syscall
 
-    jr $ra
+    li $v0, 4              # print string
+    la $a0, break_msg
+    syscall
+
+loop:
+    # TAKE IT FROM THERE
+
+    # f(x)  = x^2 - 3
+    # f'(x) = 2x
+    # y     = x - f(x) / f'(x)
+    #       = x - (0.5x - 1.5/x)
+    #       = 0.5x + 1.5/x
+
+    mul.s $f8, $f0, $f2    # calc 0.5*x
+    div.s $f6, $f4, $f0    # calc 1.5/x
+    add.s $f0, $f8, $f6
+
+    sub $s0, $s0, 1        # loop if iteration > 0
+    beq $s0, 0, exit
+
+    j print
 
 exit:
     li $v0, 10
