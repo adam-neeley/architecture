@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1726678874,
-        "narHash": "sha256-dT0ZktKRqioJv/E0HKhCuQk8DbZpQphhsrFeYT7KEcg=",
+        "lastModified": 1726679509,
+        "narHash": "sha256-jIJRqEVT8XImGtjrk0rCO6eobaj3BLTigTqJgAEb2do=",
         "owner": "adam-neeley",
         "repo": "nix-lib-monadam",
-        "rev": "a556bde63e3792e583e45aa9b5281b8aed1f417c",
+        "rev": "27c395a733c83187413bdce52a1db2c7593b3255",
         "type": "github"
       },
       "original": {
@@ -33,12 +33,12 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1724819573,
-        "narHash": "sha256-GnR7/ibgIH1vhoy8cYdmXE6iyZqKqFxQSVkFgosBh6w=",
-        "rev": "71e91c409d1e654808b2621f28a327acfdad8dc2",
-        "revCount": 672439,
+        "lastModified": 1726463316,
+        "narHash": "sha256-gI9kkaH0ZjakJOKrdjaI/VbaMEo9qBbSUl93DnU7f4c=",
+        "rev": "99dc8785f6a0adac95f5e2ab05cc2e1bf666d172",
+        "revCount": 681973,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.672439%2Brev-71e91c409d1e654808b2621f28a327acfdad8dc2/01919c14-b63e-7736-a9e9-48bee9f65f2b/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.681973%2Brev-99dc8785f6a0adac95f5e2ab05cc2e1bf666d172/0191fe06-77c6-7f96-9835-e6a8ac5c4059/source.tar.gz"
       },
       "original": {
         "type": "tarball",

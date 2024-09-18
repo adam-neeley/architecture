@@ -6,7 +6,7 @@
 
   outputs = { self, nixpkgs, nix-lib-monadam }:
     let
-      lib = nix-lib-monadam.lib;
+      inherit (nix-lib-monadam) lib;
       supportedSystems =
         [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forEachSupportedSystem = f:
@@ -17,7 +17,18 @@
               config.allowUnfree = true;
             };
           });
+
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+      labs = lib.getDirs ./lab;
+      labPackages = pkgs.lib.attrsets.mergeAttrsList (map (lab: {
+        "lab-${lab}" = let path = ./lab + "/${lab}";
+        in pkgs.writeShellScriptBin "lab-${lab}" ''
+          ${pkgs.mars-mips}/bin/Mars nc p ${path}
+        '';
+      }) labs);
     in {
+      packages.${system} = labPackages;
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
