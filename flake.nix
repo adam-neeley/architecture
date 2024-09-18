@@ -18,27 +18,24 @@
             };
           });
 
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
       labs = lib.getDirs ./lab;
-      labPackages = pkgs.lib.attrsets.mergeAttrsList (map (lab: {
-        "lab-${lab}" = let path = ./lab + "/${lab}";
-        in pkgs.writeShellScriptBin "lab-${lab}" ''
-          ${pkgs.mars-mips}/bin/Mars nc p ${path}
-        '';
-      }) labs);
     in {
-      packages.${system} = labPackages;
+      packages = forEachSupportedSystem ({ pkgs }:
+        pkgs.lib.attrsets.mergeAttrsList (map (lab: {
+          "lab-${lab}" = pkgs.writeShellScriptBin "lab-${lab}" ''
+            LABPATH=${./lab}/${lab}/
+            cd ``$LABPATH
+            ${pkgs.mars-mips}/bin/Mars p .
+          '';
+        }) labs));
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; [
-            qtspim
-            xspim
-            mars-mips
-            (writeShellScriptBin "mars" ''
-              Mars nc $@
-            '')
-          ];
+          packages = with pkgs;
+            [
+              # qtspim
+              # xspim
+              mars-mips
+            ];
         };
       });
     };
