@@ -1,0 +1,33 @@
+#+title: Week 4
+* shift
+** sll: for unsigned
+** srl: for unsigned
+** sra: for signed
+** sla: for signed /not allowed/
+#+begin_src
+10000001 = 01111110 + 1 = -01111111 = -128
+10000010 = 01111101 + 1 = -01111110 = -127
+10000100 = 01111011 + 1 = -01111100 = -125
+10001000 = 01110111 + 1 = -01111000 = -121
+10010000 = 01101111 + 1 = -01110000 = -113
+10100000 = 01001111 + 1 = -01100000 =  -97
+11000000 = 01111111 + 1 = -01000000 =  -64
+#+end_src
+* li = lui -> ori
+* la = lui -> ori
+* diagram
+|-------------+---------+---------+---------|
+|             | cpu     | memory  | i/o     |
+|-------------+---------+---------+---------|
+| address bus | !!'.... | ..!!'.. | ....'!! |
+| data bus    | !'..... | ..!'... | .....'! |
+| control bus | '...... | ..'.... | ......' |
+|-------------+---------+---------+---------|
+
+* sw $s0, 0($t0)
+store word at $s0 into $t0
+* branch instructions beq, bqez, ...
++ are immediate load expressions
++ relative address
+* jump instruction j, jal
++ absolute address
