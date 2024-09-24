@@ -1,4 +1,96 @@
 #+title: Week 5
 * multiply
-
+#+begin_src
+         1100
+      x  1100
+      =======
+         0000
+        0000
+       1100
+   +  1100
+   ==========
+     10010000
+     = 128 + 16
+     = 144
+#+end_src
 * divide
+** get one's digit
+#+begin_src mips :tangle
+.text
+main:
+            li $s0 95
+            li $t1 0
+            div $s0 $t1
+            mfhi $t0
+            jal print_int
+            b exit
+print_int:
+            li $v0 1
+            la $a0 ($t0)
+            syscall
+            jr $ra
+exit:
+#+end_src
+
+#+RESULTS:
+: 0
+* print hex
+** mips
+#+begin_src mips :tangle
+.data
+hex_digit_table:
+    .byte '0' '1' '2' '3' '4' '5' '6' '7'
+    .byte '8' '9' 'A' 'B' 'C' 'D' 'E' 'F'
+.text
+main:
+            li $a0 0xCAFEF00D
+            jal print_hex
+            li $v0 10
+            syscall
+print_hex:
+            move $s0 $a0
+            li $s2 28
+            la $s3 hex_digit_table
+loop:
+            srlv $s1 $s0 $s2
+            andi $a0 $s1 0x0f
+            add $s4 $s3 $a0
+            lb $a0 ($s4)
+            li $v0 11
+            syscall
+            addi $s2, $s2, -4
+            bgez $s2 loop
+            jr $ra
+#+end_src
+
+#+RESULTS:
+: CAFEF00D
+** c++
+#+begin_src cpp
+#include <iostream>
+using namespace std;
+
+void print_hex(int);
+
+int main() {
+    print_hex(0xcafef00d);
+    cout << endl;
+    return 1;
+}
+
+static char hex_digit_table[] = {
+    '0','1','2','3','4','5','6','7',
+    '8','9','A','B','C','D','E','F'
+};
+
+void print_hex(int num) {
+    for (int shamt = 28; shamt >= 0; shamt -=4){
+        int x = num >> shamt;
+        cout << (hex_digit_table[( num >> shamt ) & 0x0f]);
+    }
+}
+
+#+end_src
+
+#+RESULTS:
+: CAFEF00D
