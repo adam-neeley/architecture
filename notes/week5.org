@@ -66,7 +66,7 @@ loop:
 #+RESULTS:
 : CAFEF00D
 ** c++
-#+begin_src cpp
+#+begin_src cpp :tangle
 #include <iostream>
 using namespace std;
 
@@ -75,7 +75,7 @@ void print_hex(int);
 int main() {
     print_hex(0xcafef00d);
     cout << endl;
-    return 1;
+    return 0;
 }
 
 static char hex_digit_table[] = {
