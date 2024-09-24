@@ -16,7 +16,7 @@
 * divide
 ** get one's digit
 #+name: ones_digit_mips
-#+begin_src mips
+#+begin_src mips :results drawer
 .text
 main:
             li $s0 95
@@ -33,8 +33,9 @@ print_int:
 exit:
 #+end_src
 
-#+RESULTS: ones_digit_mips
-: 5
+:results:
+5
+:end:
 
 * print hex
 ** mips
@@ -69,8 +70,8 @@ loop:
 #+RESULTS: print_hex_mips
 : CAFEF00D
 
-
 ** c++
+#+name: print_hex_cpp
 #+begin_src cpp
 #include <iostream>
 using namespace std;
@@ -97,5 +98,5 @@ void print_hex(int num) {
 
 #+end_src
 
-#+RESULTS:
+#+RESULTS: print_hex_cpp
 : CAFEF00D
