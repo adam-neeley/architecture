@@ -40,7 +40,7 @@ exit:
 * print hex
 ** mips
 #+name: print_hex_mips
-#+begin_src mips
+#+begin_src mips :results drawer
 .data
 hex_digit_table:
     .byte '0' '1' '2' '3' '4' '5' '6' '7'
@@ -67,12 +67,13 @@ loop:
             jr $ra
 #+end_src
 
-#+RESULTS: print_hex_mips
-: CAFEF00D
+:results:
+CAFEF00D
+:end:
 
 ** c++
 #+name: print_hex_cpp
-#+begin_src cpp
+#+begin_src cpp :results drawer
 #include <iostream>
 using namespace std;
 
@@ -98,5 +99,6 @@ void print_hex(int num) {
 
 #+end_src
 
-#+RESULTS: print_hex_cpp
-: CAFEF00D
+:results:
+CAFEF00D
+:end:
