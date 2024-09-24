@@ -1,0 +1,33 @@
+#+title: hw 2
+* disassembler
+A *disassembler* is a program that does the opposite of an assembler: given a sequence of machine instructions, it generates the corresponding assembly language. Your job in this assignment is to write a disassembler for a subset of the MIPS instruction set.
+Starting from the file [[dis.cpp]], add code so that the dis() function prints out the assembly language for its 'instruction' argument. Where the machine instruction refers to registers, dis() should output the mnemonic name of the register, not the register's number; for example, output <code>$t0</code>, not <code>$8</code>. You can output spaces or tabs as you like, as long as the resulting instruction reassembles in MARS. Each call to dis() should output a complete line (with a newline at the end).
+You only need to disassemble these 16 instructions:
++ addi
++ addiu
++ slti
++ sltiu
++ andi
++ ori
++ xori
++ lui
++ add
++ addu
++ sub
++ subu
++ and
++ or
++ xor
++ nor
+These instructions are documented in Appendix A of the book, which is available on-line at https://pages.cs.wisc.edu/~larus/HP_AppA.pdf. See especially page A-50, which has a chart of all the instructions on one page, showing how their opcodes are constructed. Each instruction's bit format is fully documented in the surrounding text. You may assume that no other instructions than those listed above will be passed to dis(). Notice that lui is a little different from the others.
+I put in a main() with a couple test cases. You should probably add more.
+* hints
+** Make look-up tables. Look-up tables will greatly simplify the code.
+** Use C++'s shift operators, &lt;&lt; or &gt;&gt;. You've used &lt;&lt; and &gt;&gt; with iostreams before, with cout and cin, but their primary meaning in C++ is as bit-shift operators. <code>a &gt;&gt; 10</code> means "<code>a</code>, shifted right 10 bits".
+** Use C++'s bitwise logical operators, &amp; or |. Unlike &amp;&amp;, which does "short-circuit" evaluation and returns a bool, the &amp; operator performs a bitwise AND of its operands. So, <code>0x0a &amp; 0x0c</code> equals 0x08. (Try writing out the bits on paper if you're not sure.)
+
+
+To accomplish this task, you should:
+1. Create look-up tables for the opcode, function code, and register names.
+2. Implement the dis() function in dis.cpp to parse and print the assembly language for each of the specified instructions.
+3. Translate the machine instruction fields (opcode, rs, rt, rd, sa, and function code) to their corresponding assembly language mnemonics.
