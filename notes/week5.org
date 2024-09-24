@@ -15,11 +15,11 @@
 #+end_src
 * divide
 ** get one's digit
-#+begin_src mips :tangle
+#+begin_src mips
 .text
 main:
             li $s0 95
-            li $t1 0
+            li $t1 10
             div $s0 $t1
             mfhi $t0
             jal print_int
@@ -33,10 +33,10 @@ exit:
 #+end_src
 
 #+RESULTS:
-: 0
+: 5
 * print hex
 ** mips
-#+begin_src mips :tangle
+#+begin_src mips
 .data
 hex_digit_table:
     .byte '0' '1' '2' '3' '4' '5' '6' '7'
@@ -65,8 +65,9 @@ loop:
 
 #+RESULTS:
 : CAFEF00D
+
 ** c++
-#+begin_src cpp :tangle
+#+begin_src cpp
 #include <iostream>
 using namespace std;
 
