@@ -36,6 +36,10 @@ exit:
 5
 :end:
 
+:results:
+5
+:end:
+
 * print hex
 ** mips
 #+begin_src mips :results drawer
