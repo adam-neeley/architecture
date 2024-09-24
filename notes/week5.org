@@ -15,6 +15,7 @@
 #+end_src
 * divide
 ** get one's digit
+#+name: ones_digit_mips
 #+begin_src mips
 .text
 main:
@@ -32,10 +33,12 @@ print_int:
 exit:
 #+end_src
 
-#+RESULTS:
+#+RESULTS: ones_digit_mips
 : 5
+
 * print hex
 ** mips
+#+name: print_hex_mips
 #+begin_src mips
 .data
 hex_digit_table:
@@ -63,8 +66,9 @@ loop:
             jr $ra
 #+end_src
 
-#+RESULTS:
+#+RESULTS: print_hex_mips
 : CAFEF00D
+
 
 ** c++
 #+begin_src cpp
