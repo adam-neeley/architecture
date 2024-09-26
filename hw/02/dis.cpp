@@ -98,12 +98,11 @@ void dis(unsigned int instruction) {
     cout << "rt:     " << rt << endl;
     cout << "imm:    " << imm << endl;
     cout << "other:  " << other << endl;
-    cout << "func:   " << func << endl;
+    cout << "func:   " << func << " " << funcNum << endl;
     cout << "ps_add: " << pseudo_address << endl;
   }
 
-  cout << "RESULT" << endl;
-  cout << "======" << endl;
+  cout << "RESULT: \t";
   string spc = " ";
   switch (it) {
   case Immediate:
@@ -131,10 +130,20 @@ void dis(unsigned int instruction) {
 }
 
 int main(int argc, char **argv) {
-  dis(0x2149ff9c); // addi $t1, $t2, -100
-  // 0010 00
+  dis(0x2149ff9c);                         // addi $t1, $t2, -100
   dis(0x014b4820);                         // add  $t1, $t2, $t3
+  dis(0x014b4822);                         // sub  $t1, $t2, $t3
   dis(0b00000000000000000000000000001100); // syscall
-  // Probably add more test cases here.
+  dis(0b00000010001100010000100000001000); // jr
+  dis(0b00110010001100010000000000000001); // andi 1
+  dis(0b00101010011100110000000000000001); // slti
+  dis(0b00000010011101110001000000100100); // and
+  dis(0b00000010011101110001000000100101); // or
+  dis(0b00000010011101110001000000100110); // xor
+  dis(0b00000010011101110001000000100111); // nor
+  // + sltiu
+  // + lui
+  // + addu
+  // + subu
   return 0;
 }
