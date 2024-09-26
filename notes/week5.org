@@ -103,3 +103,8 @@ void print_hex(int num) {
 :results:
 CAFEF00D
 :end:
+* stack
+* little endian
+storing data in which the least significant byte is placed at the lowest memory address.
+* big endian
+storing data in which the least significant byte is placed at the highest memory address.
