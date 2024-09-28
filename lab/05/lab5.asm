@@ -44,7 +44,7 @@ display_number:
 
 	# YOUR CODE GOES HERE
 	la   	$s6, digits_table
-	sb   	$s6, 0($s6)
+	# sb   	$s6, 0($s6)
 	li   	$s4, 0xffff0010
 
 	li   	$t8, 10
