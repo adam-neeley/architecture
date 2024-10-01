@@ -57,9 +57,9 @@ void dis(unsigned int instruction) {
 
   string op = op_table[opNum];
   int opLastIndex = op_table[opNum].length() - 1;
-  string rs = reg_table[rsNum];
-  string rt = reg_table[rtNum];
-  string rd = reg_table[rdNum];
+  string rs = "$" + reg_table[rsNum];
+  string rt = "$" + reg_table[rtNum];
+  string rd = "$" + reg_table[rdNum];
   int other = otherNum;
   string func = func_table[funcNum];
   int imm = immNum;
