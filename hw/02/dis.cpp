@@ -14,16 +14,10 @@ static bool DEBUG = true;
 ostringstream debug_log;
 ostringstream results_log;
 
-enum InstructionType {
-  Register,
-  ImmediateSigned,
-  ImmediateUnsigned,
-  Jump,
-  OpUnary
-};
+enum instr_type { Register, ImmediateSigned, ImmediateUnsigned, Jump, OpUnary };
 
-static string InstructionString[] = {"Register", "ImmediateSigned",
-                                     "ImmediateUnsigned", "Jump", "OpUnary"};
+static string instr_str[] = {"Register", "ImmediateSigned", "ImmediateUnsigned",
+                             "Jump", "OpUnary"};
 
 static string op_table[] = {"",     "",     "j",    "jal",   "beq",  "bne",
                             "blez", "bgtz", "addi", "addiu", "slti", "sltiu",
@@ -65,7 +59,7 @@ void dis(unsigned int instruction) {
   int imm = immNum;
   unsigned int immUnsigned = immuNum;
 
-  InstructionType it;
+  instr_type it;
 
   if (op[opLastIndex] == 'i')
     it = ImmediateSigned;
@@ -84,7 +78,7 @@ void dis(unsigned int instruction) {
   if (DEBUG) {
     debug_log << "========================================" << endl;
     debug_log << "instr:  " << instr_bin << endl;
-    debug_log << "type:   " << InstructionString[it] << endl;
+    debug_log << "type:   " << instr_str[it] << endl;
     if (op != "") {
       debug_log << "op:     " << op << endl;
     } else {
@@ -166,6 +160,3 @@ int main(int argc, char **argv) {
   cout << results_log.str();
   return 0;
 }
-
-// 1 3
-// a = 3
