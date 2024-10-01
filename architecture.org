@@ -1,26 +1,26 @@
-* [ ] Week 1
-** [ ] Mysteries
-** [ ] Binary and base conversions
-+ [ ] §2.4,2.2
-* [ ] Week 2
-** [ ] Binary addition,2’s complement
-+ [ ] §3.2
-** [ ] Conditional branches
-+ [ ] §2.7
-* [ ] Week 3
-** [ ] Branch pseudoinstructions, ASCII, function call
-+ [ ] §2.9,2.13
-** [ ] Shift instructions and Boolean operations
-+ [ ] §2.6
-* [ ] Week 4
-** [ ] Bit-manipulation in C, instruction formats
-+ [ ] 2.5
-** [ ] Instruction formats, li and la are just mov
-* [ ] Week 5
-** [ ] mul/div, look-up tables
-+ [ ] §3.3,3.4
-** [ ] The stack, byte-ordering
-+ [ ] §2.8
+* [X] Week 1
+** [X] Mysteries
+** [X] Binary and base conversions
+*** [X] §2.4,2.2
+* [X] Week 2
+** [X] Binary addition,2’s complement
+*** [X] §3.2
+** [X] Conditional branches
+*** [X] §2.7
+* [X] Week 3
+** [X] Branch pseudoinstructions, ASCII, function call
+*** [X] §2.9,2.13
+** [X] Shift instructions and Boolean operations
+*** [X] §2.6
+* [X] Week 4
+** [X] Bit-manipulation in C, instruction formats
+*** [X] 2.5
+** [X] Instruction formats, li and la are just mov
+* [X] Week 5
+** [X] mul/div, look-up tables
+*** [X] §3.3,3.4
+** [X] The stack, byte-ordering
+*** [X] §2.8
 * [ ] Week 6
 ** [ ] Memory layout, local variables
 ** [ ] REVIEW
@@ -29,24 +29,24 @@
 ** [ ] MIDTERM
 * [ ] Week 8
 ** [ ] IEEE 754 Floating point
-+ [ ] §3.5
+*** [ ] §3.5
 ** [ ] Weird things about IEEE 754, floating-point instructions
 * [ ] Week 9
 ** [ ] Logic gates
 ** [ ] More logic gates, multiplexers, comparator
 * [ ] Week 10
 ** [ ] Floating-point gaps, Datapath
-+ [ ] §4.1–3
+*** [ ] §4.1–3
 ** [ ] Datapath and control
-+ [ ] §4.4,4.5
+*** [ ] §4.4,4.5
 * [ ] Week 11
 ** [ ] Control and pipelining, metric prefixes
-+ [ ] §4.6
+*** [ ] §4.6
 ** [ ] Pipeline registers, pipeline hazards
-+ [ ] §4.7–9,4.11(optional)
+*** [ ] §4.7–9,4.11(optional)
 * [ ] Week 12
 ** [ ] Intro to caching
-+ [ ] §5.1,5.2
+*** [ ] §5.1,5.2
 ** [ ] Cache types, cache misses
 * [ ] Week 13
 ** [ ] Block-replacement policies, write-through, write-back
