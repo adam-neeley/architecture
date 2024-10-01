@@ -1,7 +1,7 @@
 {
-  description = "A Nix-flake-based Shell development environment";
+  description = "computer architecture (MIPS)";
 
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "nixpkgs/nixos-24.05";
   inputs.nix-lib-monadam.url = "github:adam-neeley/nix-lib-monadam";
 
   outputs = { self, nixpkgs, nix-lib-monadam }:
@@ -18,14 +18,7 @@
           '';
         }) labs));
       devShells = lib.flakes.forAllSystems ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = with pkgs;
-            [
-              # qtspim
-              # xspim
-              mars-mips
-            ];
-        };
+        default = pkgs.mkShell { packages = with pkgs; [ mars-mips ]; };
       });
     };
 }
