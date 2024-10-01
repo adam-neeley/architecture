@@ -1,3 +1,4 @@
+#+title: Architecture
 * [X] Week 1
 ** [X] Mysteries
 ** [X] Binary and base conversions
@@ -23,26 +24,41 @@
 *** [X] §2.8
 * [ ] Week 6
 ** [ ] Memory layout, local variables
+DEADLINE: <2024-10-01 Tue>
 ** [ ] REVIEW
+DEADLINE: <2024-10-03 Thu>
 * [ ] Week 7
+** [ ] hw 2: disassembler
+DEADLINE: <2024-10-08 Tue>
 ** [ ] REVIEW
+DEADLINE: <2024-10-08 Tue>
 ** [ ] MIDTERM
 * [ ] Week 8
 ** [ ] IEEE 754 Floating point
+DEADLINE: <2024-10-15 Tue>
 *** [ ] §3.5
 ** [ ] Weird things about IEEE 754, floating-point instructions
+DEADLINE: <2024-10-17 Thu>
 * [ ] Week 9
 ** [ ] Logic gates
+DEADLINE: <2024-10-22 Tue>
 ** [ ] More logic gates, multiplexers, comparator
+DEADLINE: <2024-10-24 Thu>
 * [ ] Week 10
 ** [ ] Floating-point gaps, Datapath
+DEADLINE: <2024-10-29 Tue>
 *** [ ] §4.1–3
+DEADLINE: <2024-10-29 Tue>
 ** [ ] Datapath and control
+DEADLINE: <2024-10-31 Thu>
 *** [ ] §4.4,4.5
+DEADLINE: <2024-10-31 Thu>
 * [ ] Week 11
 ** [ ] Control and pipelining, metric prefixes
+DEADLINE: <2024-11-05 Tue>
 *** [ ] §4.6
 ** [ ] Pipeline registers, pipeline hazards
+DEADLINE: <2024-11-07 Thu>
 *** [ ] §4.7–9,4.11(optional)
 * [ ] Week 12
 ** [ ] Intro to caching
@@ -60,4 +76,3 @@
 * [ ] Week 16
 ** [ ] FINAL EXAM
 * [ ] *Inbox
-** [ ] DONE finish hw 2
