@@ -3,39 +3,27 @@
  */
 
 #include <bitset>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 using namespace std;
 
-static bool DEBUG = false;
+static bool DEBUG = true;
+ostringstream debug_log;
+ostringstream results_log;
 
-enum InstructionType { Register, Immediate, ImmediateUnsigned, Jump, Op };
+enum InstructionType {
+  Register,
+  ImmediateSigned,
+  ImmediateUnsigned,
+  Jump,
+  OpUnary
+};
 
-string to_string(InstructionType it) {
-  switch (it) {
-  case Register:
-    return "Register";
-    break;
-  case Op:
-    return "Op";
-    break;
-  case Immediate:
-    return "Immediate";
-    break;
-  case Jump:
-    return "Jump";
-    break;
-  }
-  throw invalid_argument("Invalid InstructionType");
-}
-
-void dis(unsigned int instruction);
-
-/*
- * dis(instruction) -- Prints MIPS assembly language for
- * 'instruction', i.e. diassemble the instruction.
- */
+static string InstructionString[] = {"Register", "ImmediateSigned",
+                                     "ImmediateUnsigned", "Jump", "OpUnary"};
 
 static string op_table[] = {"",     "",     "j",    "jal",   "beq",  "bne",
                             "blez", "bgtz", "addi", "addiu", "slti", "sltiu",
@@ -63,9 +51,9 @@ void dis(unsigned int instruction) {
   int otherNum = (instruction >> 6) & 0x1f;
   int funcNum = instruction & 0x3f;
   int pseudo_address = instruction & 0x1fffff;
-  short immNum = (instruction) & 0xffff;
-  unsigned short immNumUnsigned = (instruction) & 0xffff;
-  unsigned short immuNum = (instruction) & 0xffff;
+  short immNum = instruction & 0xffff;
+  unsigned short immNumUnsigned = instruction & 0xffff;
+  unsigned short immuNum = instruction & 0xffff;
 
   string op = op_table[opNum];
   int opLastIndex = op_table[opNum].length() - 1;
@@ -75,86 +63,107 @@ void dis(unsigned int instruction) {
   int other = otherNum;
   string func = func_table[funcNum];
   int imm = immNum;
-  int immUnsigned = immNumUnsigned;
+  unsigned int immUnsigned = immuNum;
 
   InstructionType it;
 
   if (op[opLastIndex] == 'i')
-    if (op[opLastIndex - 1] == 'u')
-      it = ImmediateUnsigned;
-    else
-      it = Immediate;
+    it = ImmediateSigned;
+  else if (op[opLastIndex - 1] == 'i' && op[opLastIndex] == 'u')
+    it = ImmediateUnsigned;
   else if (func == "syscall" || op == "jal")
-    it = Op;
+    it = OpUnary;
   else if (op[0] == 'j')
     it = Jump;
   else
     it = Register;
 
   bitset<32> instr_bin(instruction);
+  bitset<11> imm_bin(instruction & 0x7ff);
+
   if (DEBUG) {
-    cout << "DEBUG" << endl;
-    cout << "=====" << endl;
-    cout << "instr:  " << instr_bin << endl;
-    cout << "type:   " << to_string(it) << endl;
-    cout << "op:     " << op << endl;
-    cout << "rd:     " << rd << endl;
-    cout << "rs:     " << rs << endl;
-    cout << "rt:     " << rt << endl;
-    cout << "imm:    " << imm << endl;
-    cout << "immUn:  " << immUnsigned << endl;
-    cout << "other:  " << other << endl;
-    cout << "func:   " << func << " " << funcNum << endl;
-    cout << "ps_add: " << pseudo_address << endl;
+    debug_log << "========================================" << endl;
+    debug_log << "instr:  " << instr_bin << endl;
+    debug_log << "type:   " << InstructionString[it] << endl;
+    if (op != "") {
+      debug_log << "op:     " << op << endl;
+    } else {
+      debug_log << "func:   " << func << endl;
+    }
+    if (it != OpUnary && it != Jump) {
+      debug_log << "rd:     " << rd << endl;
+      debug_log << "rs:     " << rs << endl;
+    }
+    if (it == Register) {
+      debug_log << "rt:     " << rt << endl;
+      debug_log << "other:  " << other << endl;
+    }
+    if (it == ImmediateSigned)
+      debug_log << "imm:    " << imm << endl;
+    if (it == ImmediateUnsigned)
+      debug_log << "imm:    " << (unsigned short)imm << endl;
+    if (it == Jump)
+      debug_log << "pseudo: " << pseudo_address << endl;
   }
 
-  cout << "RESULT: \t";
+  results_log << setw(20) << instr_bin << " = ";
   string spc = " ";
   switch (it) {
   case ImmediateUnsigned:
-    cout << op << spc << rt << spc << rs << spc << immUnsigned << endl;
+    results_log << op << spc << rt << spc << rs << spc << (unsigned short)imm
+                << endl;
     break;
-  case Immediate:
-    cout << op << spc << rt << spc << rs << spc << imm << endl;
+  case ImmediateSigned:
+    results_log << op << spc << rt << spc << rs << spc << imm << endl;
     break;
-  case Op:
+  case OpUnary:
     if (op == "")
-      cout << func << endl;
+      results_log << func << endl;
     else
-      cout << op << endl;
+      results_log << op << endl;
     break;
   case Jump:
-    cout << op << spc << pseudo_address << endl;
+    results_log << op << spc << pseudo_address << endl;
     break;
   case Register:
     if (op == "")
-      cout << func << spc << rd << spc << rs << spc << rt << endl;
+      results_log << func << spc << rd << spc << rs << spc << rt << endl;
     else
-      cout << op << spc << rs << spc << rt << spc << rd << endl;
+      results_log << op << spc << rs << spc << rt << spc << rd << endl;
     break;
   default:
     throw invalid_argument("invalid instruction");
   }
-  cout << endl;
 }
 
 int main(int argc, char **argv) {
   dis(0x2149ff9c);                         // addi  $t1, $t2, -100
   dis(0x014b4820);                         // add   $t1, $t2, $t3
   dis(0x014b4821);                         // addu  $t1, $t2, $t3
+  dis(0b00110010001100010000000000000001); // andi 1
+  dis(0b00000010011101110001000000100100); // and
+  dis(0b00000010001100010000100000001000); // jr
+  dis(0b00111110011101110001000000000111); // lui
+  dis(0b00000010011101110001000000100111); // nor
+  dis(0b00000010011101110001000000100101); // or
+  dis(0b00101010011100111111111111111111); // slti
+  dis(0b00101110011100111111111111111111); // sltiu
   dis(0x014b4822);                         // sub   $t1, $t2, $t3
   dis(0x014b4823);                         // subu  $t1, $t2, $t3
   dis(0b00000000000000000000000000001100); // syscall
-  dis(0b00000010001100010000100000001000); // jr
-  dis(0b00110010001100010000000000000001); // andi 1
-  dis(0b00101010011100110000000000000001); // slti
-  dis(0b00101110011100110000000000000001); // slti
-  dis(0b00000010011101110001000000100100); // and
-  dis(0b00000010011101110001000000100101); // or
   dis(0b00000010011101110001000000100110); // xor
-  dis(0b00000010011101110001000000100111); // nor
-  // + sltiu
-  // + lui
+
+  if (DEBUG) {
+    cout << "========================================" << endl;
+    cout << "|                DEBUG                 |" << endl;
+    // cout << "========================================" << endl;
+    cout << debug_log.str();
+  }
+
+  cout << "========================================" << endl;
+  cout << "|               RESULTS                |" << endl;
+  cout << "========================================" << endl;
+  cout << results_log.str();
   return 0;
 }
 
