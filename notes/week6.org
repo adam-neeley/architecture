@@ -1,0 +1,4 @@
+ #+title: Week 6
+* questions
+** how make func table?
+** are there assembly libraries?
