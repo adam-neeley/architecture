@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -17,22 +18,31 @@ ostringstream results_log;
 class Instruction {
 private:
   string expr;
+  vector<string> tokens;
   enum type { Register, ImmediateSigned, ImmediateUnsigned, Jump, OpUnary };
-  string next_token() {
-    // size_t pos = expr.find(" ");
-    // string token = expr.substr(0, pos);
-    return expr.erase(0, expr.find(' '));
-  };
+
+  vector<string> tokenize(string expr) {
+    vector<string> tokens;
+    stringstream ss(expr);
+    string token;
+    while (getline(ss, token, ' '))
+      tokens.push_back(token);
+
+    return tokens;
+  }
 
 public:
   Instruction(string expr) {
-    string op = next_token();
-    cout << op << endl;
+    tokens = tokenize(expr);
+    for (int i = 0; i < tokens.size(); i++)
+      cout << tokens[i] << " ";
+    cout << endl;
   }
 };
 
 int main() {
-  Instruction i = Instruction("hi what bye");
+  Instruction instr("add $t0 $t1 $t2");
+  //
 }
 
 // static string instr_str[] = {"Register", "ImmediateSigned",
