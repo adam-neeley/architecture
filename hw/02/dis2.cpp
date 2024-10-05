@@ -5,190 +5,148 @@
 #include <bitset>
 #include <iomanip>
 #include <iostream>
+#include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-static bool DEBUG = true;
-ostringstream debug_log;
-ostringstream results_log;
+static string ops[] = {"",     "",     "j",    "jal",   "beq",  "bne",
+                       "blez", "bgtz", "addi", "addiu", "slti", "sltiu",
+                       "andi", "ori",  "xori", "lui"};
+
+static string funcs[] = {
+    "sll",  "",      "srl",  "sra",  "sllv",    "",      "srlv", "srav",
+    "jr",   "jalr",  "movz", "movn", "syscall", "break", "",     "sync",
+    "mfhi", "mfhi",  "mflo", "mflo", "",        "",      "",     "",
+    "mult", "multu", "div",  "divu", "",        "",      "",     "",
+    "add",  "addu",  "sub",  "subu", "and",     "or",    "xor",  "nor",
+    "",     "",      "slt",  "sltu", "",        ""};
+
+static string regs[] = {"zero", "at", "v0", "v1", "a0", "a1", "a2", "a3",
+                        "t0",   "t1", "t2", "t3", "t4", "t5", "t6", "t7",
+                        "s0",   "s1", "s2", "s3", "s4", "s5", "s6", "s7",
+                        "t8",   "t9", "k0", "k1", "gp", "sp", "fp", "ra"};
+
+using uint = unsigned int;
+using sint = signed int;
+
+static vector<string> tokenize(string expr) {
+  vector<string> tokens;
+  stringstream ss(expr);
+  string token;
+  while (getline(ss, token, ' '))
+    tokens.push_back(token);
+  return tokens;
+}
 
 class Instruction {
 private:
+  string type;
   string expr;
+  uint code;
   vector<string> tokens;
-  enum type { Register, ImmediateSigned, ImmediateUnsigned, Jump, OpUnary };
+  string op, rs, rt, rd, func, imms, immu, pseudo, first;
+  bool debug = true;
 
-  vector<string> tokenize(string expr) {
-    vector<string> tokens;
-    stringstream ss(expr);
-    string token;
-    while (getline(ss, token, ' '))
-      tokens.push_back(token);
+  uint sum_pows_2(uint n) {
+    if (n == 0)
+      return 1;
+    return (2 << (n - 1)) + sum_pows_2(n - 1);
+  }
 
-    return tokens;
+  uint get_part(uint shift, uint bits) {
+    return (code >> shift) & sum_pows_2(bits);
+  }
+
+  void print_debug() {
+    //
+    uint w = 10;
+    cout << setw(w) << "first: " << first << endl;
+    cout << setw(w) << "type: " << type << endl;
+    cout << setw(w) << "code: " << code << endl;
+    cout << setw(w) << "op: " << op << endl;
+    cout << setw(w) << "rs: " << rs << endl;
+    cout << setw(w) << "rt: " << rt << endl;
+    cout << setw(w) << "rd: " << rd << endl;
+    cout << setw(w) << "func: " << func << endl;
+    cout << setw(w) << "imms: " << imms << endl;
+    cout << setw(w) << "immu: " << immu << endl;
+    cout << setw(w) << "pseudo: " << pseudo << endl;
   }
 
 public:
+  Instruction(uint code, bool debug = false) : code{code}, debug{debug} {
+    op = ops[get_part(26, 6)];
+    rs = regs[get_part(21, 5)];
+    rt = regs[get_part(16, 5)];
+    rd = regs[get_part(11, 5)];
+    func = funcs[get_part(0, 6)];
+    // imms = to_string(get_part_signed(0, 16));
+    immu = to_string(get_part(0, 16));
+    pseudo = to_string(get_part(0, 26));
+    first = op != "" ? op : func;
+
+    if (false)
+      cout << "tye: ";
+    else if (regex_search(first, regex("ui$")))
+      type = "ImmediateUnsigned";
+    else if (regex_search(first, regex("u$")))
+      type = "RegisterUnsigned";
+    else if (regex_search(first, regex("i$")))
+      type = "Immediate";
+    else
+      type = "Register";
+
+    if (debug)
+      print_debug();
+    print();
+  };
+
   Instruction(string expr) {
     tokens = tokenize(expr);
-    for (int i = 0; i < tokens.size(); i++)
-      cout << tokens[i] << " ";
+    for (string token : tokens)
+      cout << token << " ";
     cout << endl;
+  }
+
+  void print() { cout << first << endl; }
+
+  unsigned int eval(string expr) {
+    // switch ()
+    //
+    return 0;
   }
 };
 
-int main() {
-  Instruction instr("add $t0 $t1 $t2");
-  //
+void ass(string instr_str) {
+  cout << "ass(" << instr_str << ")" << endl;
+  Instruction *instr = new Instruction(instr_str);
+  delete instr;
 }
 
-// static string instr_str[] = {"Register", "ImmediateSigned",
-// "ImmediateUnsigned",
-//                              "Jump", "OpUnary"};
+void dis(uint instr_code, bool debug = false) {
+  cout << "dis(" << instr_code << ")" << endl;
+  Instruction *instr = new Instruction(instr_code, debug);
+  delete instr;
+}
 
-// static string op_table[] = {"",     "",     "j",    "jal",   "beq",  "bne",
-//                             "blez", "bgtz", "addi", "addiu", "slti", "sltiu",
-//                             "andi", "ori",  "xori", "lui"};
-// static string func_table[] = {
-//     "sll",  "",      "srl",  "sra",  "sllv",    "",      "srlv", "srav",
-//     "jr",   "jalr",  "movz", "movn", "syscall", "break", "",     "sync",
-//     "mfhi", "mfhi",  "mflo", "mflo", "",        "",      "",     "",
-//     "mult", "multu", "div",  "divu", "",        "",      "",     "",
-//     "add",  "addu",  "sub",  "subu", "and",     "or",    "xor",  "nor",
-//     "",     "",      "slt",  "sltu", "",        ""};
-// static string reg_table[] = {"zero", "at", "v0", "v1", "a0", "a1", "a2",
-// "a3",
-//                              "t0",   "t1", "t2", "t3", "t4", "t5", "t6",
-//                              "t7", "s0",   "s1", "s2", "s3", "s4", "s5",
-//                              "s6", "s7", "t8",   "t9", "k0", "k1", "gp",
-//                              "sp", "fp", "ra"};
-
-// void dis(unsigned int instruction) {
-//   // R: [  op   | rs  | rt  | rd  |other| func ]
-//   // I: [  op   | rs  | rt  |       imm        ]
-//   // J: [  op   |       pseudo-address         ]
-//   int opNum = (instruction >> 26) & 0x3f;
-//   int rsNum = (instruction >> 21) & 0x1f;
-//   int rtNum = (instruction >> 16) & 0x1f;
-//   int rdNum = (instruction >> 11) & 0x1f;
-//   int otherNum = (instruction >> 6) & 0x1f;
-//   int funcNum = instruction & 0x3f;
-//   int pseudo_address = instruction & 0x1fffff;
-//   short immNum = instruction & 0xffff;
-//   unsigned short immNumUnsigned = instruction & 0xffff;
-//   unsigned short immuNum = instruction & 0xffff;
-
-//   string op = op_table[opNum];
-//   int opLastIndex = op_table[opNum].length() - 1;
-//   string rs = "$" + reg_table[rsNum];
-//   string rt = "$" + reg_table[rtNum];
-//   string rd = "$" + reg_table[rdNum];
-//   int other = otherNum;
-//   string func = func_table[funcNum];
-//   int imm = immNum;
-//   unsigned int immUnsigned = immuNum;
-
-//   instr_type it;
-
-//   if (op[opLastIndex] == 'i')
-//     it = ImmediateSigned;
-//   else if (op[opLastIndex - 1] == 'i' && op[opLastIndex] == 'u')
-//     it = ImmediateUnsigned;
-//   else if (func == "syscall" || op == "jal")
-//     it = OpUnary;
-//   else if (op[0] == 'j')
-//     it = Jump;
-//   else
-//     it = Register;
-
-//   bitset<32> instr_bin(instruction);
-//   bitset<11> imm_bin(instruction & 0x7ff);
-
-//   if (DEBUG) {
-//     debug_log << "========================================" << endl;
-//     debug_log << "instr:  " << instr_bin << endl;
-//     debug_log << "type:   " << instr_str[it] << endl;
-//     if (op != "") {
-//       debug_log << "op:     " << op << endl;
-//     } else {
-//       debug_log << "func:   " << func << endl;
-//     }
-//     if (it != OpUnary && it != Jump) {
-//       debug_log << "rd:     " << rd << endl;
-//       debug_log << "rs:     " << rs << endl;
-//     }
-//     if (it == Register) {
-//       debug_log << "rt:     " << rt << endl;
-//       debug_log << "other:  " << other << endl;
-//     }
-//     if (it == ImmediateSigned)
-//       debug_log << "imm:    " << imm << endl;
-//     if (it == ImmediateUnsigned)
-//       debug_log << "imm:    " << (unsigned short)imm << endl;
-//     if (it == Jump)
-//       debug_log << "pseudo: " << pseudo_address << endl;
-//   }
-
-//   results_log << setw(20) << instr_bin << " = ";
-//   string spc = " ";
-//   switch (it) {
-//   case ImmediateUnsigned:
-//     results_log << op << spc << rt << spc << rs << spc << (unsigned short)imm
-//                 << endl;
-//     break;
-//   case ImmediateSigned:
-//     results_log << op << spc << rt << spc << rs << spc << imm << endl;
-//     break;
-//   case OpUnary:
-//     if (op == "")
-//       results_log << func << endl;
-//     else
-//       results_log << op << endl;
-//     break;
-//   case Jump:
-//     results_log << op << spc << pseudo_address << endl;
-//     break;
-//   case Register:
-//     if (op == "")
-//       results_log << func << spc << rd << spc << rs << spc << rt << endl;
-//     else
-//       results_log << op << spc << rs << spc << rt << spc << rd << endl;
-//     break;
-//   default:
-//     throw invalid_argument("invalid instruction");
-//   }
-// }
-
-// int main(int argc, char **argv) {
-//   dis(0x2149ff9c);                         // addi  $t1, $t2, -100
-//   dis(0x014b4820);                         // add   $t1, $t2, $t3
-//   dis(0x014b4821);                         // addu  $t1, $t2, $t3
-//   dis(0b00110010001100010000000000000001); // andi 1
-//   dis(0b00000010011101110001000000100100); // and
-//   dis(0b00000010001100010000100000001000); // jr
-//   dis(0b00111110011101110001000000000111); // lui
-//   dis(0b00000010011101110001000000100111); // nor
-//   dis(0b00000010011101110001000000100101); // or
-//   dis(0b00101010011100111111111111111111); // slti
-//   dis(0b00101110011100111111111111111111); // sltiu
-//   dis(0x014b4822);                         // sub   $t1, $t2, $t3
-//   dis(0x014b4823);                         // subu  $t1, $t2, $t3
-//   dis(0b00000000000000000000000000001100); // syscall
-//   dis(0b00000010011101110001000000100110); // xor
-
-//   if (DEBUG) {
-//     cout << "========================================" << endl;
-//     cout << "|                DEBUG                 |" << endl;
-//     // cout << "========================================" << endl;
-//     cout << debug_log.str();
-//   }
-
-//   cout << "========================================" << endl;
-//   cout << "|               RESULTS                |" << endl;
-//   cout << "========================================" << endl;
-//   cout << results_log.str();
-//   return 0;
-// }
+int main(int argc, char **argv) {
+  dis(0x2149ff9c, true); // addi  $t1, $t2, -100
+  dis(0x014b4820, true); // add   $t1, $t2, $t3
+  dis(0x014b4821, true); // addu  $t1, $t2, $t3
+  // dis(0b00110010001100010000000000000001); // andi 1
+  // dis(0b00000010011101110001000000100100); // and
+  // dis(0b00000010001100010000100000001000); // jr
+  // dis(0b00111110011101110001000000000111); // lui
+  // dis(0b00000010011101110001000000100111); // nor
+  // dis(0b00000010011101110001000000100101); // or
+  // dis(0b00101010011100111111111111111111); // slti
+  // dis(0b00101110011100111111111111111111); // sltiu
+  // dis(0x014b4822);                         // sub   $t1, $t2, $t3
+  // dis(0x014b4823);                         // subu  $t1, $t2, $t3
+  // dis(0b00000000000000000000000000001100); // syscall
+  // dis(0b00000010011101110001000000100110); // xor
+  return 0;
+}
