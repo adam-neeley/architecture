@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -34,6 +35,13 @@ static string reg_table[] = {"zero", "at", "v0", "v1", "a0", "a1", "a2", "a3",
                              "s0",   "s1", "s2", "s3", "s4", "s5", "s6", "s7",
                              "t8",   "t9", "k0", "k1", "gp", "sp", "fp", "ra"};
 
+string str_instr(vector<string> strs) {
+  ostringstream res;
+  res << setw(10) << left;
+  for (string str : strs)
+    res << str << setw(5) << left;
+  return res.str();
+}
 void dis(unsigned int instruction) {
   // R: [  op   | rs  | rt  | rd  |other| func ]
   // I: [  op   | rs  | rt  |       imm        ]
@@ -104,26 +112,26 @@ void dis(unsigned int instruction) {
   string spc = " ";
   switch (it) {
   case ImmediateUnsigned:
-    results_log << op << spc << rt << spc << rs << spc << (unsigned short)imm
+    results_log << str_instr({op, rt, rs, to_string((unsigned short)imm)})
                 << endl;
     break;
   case ImmediateSigned:
-    results_log << op << spc << rt << spc << rs << spc << imm << endl;
+    results_log << str_instr({op, rt, rs, to_string(imm)}) << endl;
     break;
   case OpUnary:
     if (op == "")
-      results_log << func << endl;
+      results_log << str_instr({func}) << endl;
     else
-      results_log << op << endl;
+      results_log << str_instr({op}) << endl;
     break;
   case Jump:
-    results_log << op << spc << pseudo_address << endl;
+    results_log << str_instr({op, to_string(pseudo_address)}) << endl;
     break;
   case Register:
     if (op == "")
-      results_log << func << spc << rd << spc << rs << spc << rt << endl;
+      results_log << str_instr({func, rd, rs, rt}) << endl;
     else
-      results_log << op << spc << rs << spc << rt << spc << rd << endl;
+      results_log << str_instr({op, rs, rt, rd}) << endl;
     break;
   default:
     throw invalid_argument("invalid instruction");
