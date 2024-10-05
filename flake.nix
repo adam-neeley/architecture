@@ -18,7 +18,7 @@
           '';
         }) labs));
       devShells = lib.flakes.forAllSystems ({ pkgs }: {
-        default = pkgs.mkShell { packages = with pkgs; [ mars-mips ]; };
+        default = pkgs.mkShell { packages = with pkgs; [ mars-mips gcc14]; };
       });
     };
 }
