@@ -18,12 +18,12 @@ ostringstream results_log;
 
 enum instr_type { Register, ImmediateSigned, ImmediateUnsigned, Jump, OpUnary };
 
-static const string instr_str[] = {"Register", "ImmediateSigned", "ImmediateUnsigned",
-                             "Jump", "OpUnary"};
+static const string instr_str[] = {"Register", "ImmediateSigned",
+                                   "ImmediateUnsigned", "Jump", "OpUnary"};
 
-static const string op_table[] = {"",     "",     "j",    "jal",   "beq",  "bne",
-                            "blez", "bgtz", "addi", "addiu", "slti", "sltiu",
-                            "andi", "ori",  "xori", "lui"};
+static const string op_table[] = {
+    "",     "",      "j",    "jal",   "beq",  "bne", "blez", "bgtz",
+    "addi", "addiu", "slti", "sltiu", "andi", "ori", "xori", "lui"};
 
 static const string func_table[] = {
     "sll",  "",      "srl",  "sra",  "sllv",    "",      "srlv", "srav",
@@ -33,10 +33,10 @@ static const string func_table[] = {
     "add",  "addu",  "sub",  "subu", "and",     "or",    "xor",  "nor",
     "",     "",      "slt",  "sltu", "",        ""};
 
-static const string reg_table[] = {"zero", "at", "v0", "v1", "a0", "a1", "a2", "a3",
-                             "t0",   "t1", "t2", "t3", "t4", "t5", "t6", "t7",
-                             "s0",   "s1", "s2", "s3", "s4", "s5", "s6", "s7",
-                             "t8",   "t9", "k0", "k1", "gp", "sp", "fp", "ra"};
+static const string reg_table[] = {
+    "zero", "at", "v0", "v1", "a0", "a1", "a2", "a3", "t0", "t1", "t2",
+    "t3",   "t4", "t5", "t6", "t7", "s0", "s1", "s2", "s3", "s4", "s5",
+    "s6",   "s7", "t8", "t9", "k0", "k1", "gp", "sp", "fp", "ra"};
 
 string str_instr(vector<string> strs) {
   ostringstream res;

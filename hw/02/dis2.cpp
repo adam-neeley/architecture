@@ -59,6 +59,9 @@ private:
   uint get_part(uint shift, uint bits) {
     return (code >> shift) & sum_pows_2(bits);
   }
+  short get_part_signed(uint shift, uint bits) {
+    return (code >> shift) & sum_pows_2(bits);
+  }
 
   void print_debug() {
     //
@@ -83,15 +86,14 @@ public:
     rt = regs[get_part(16, 5)];
     rd = regs[get_part(11, 5)];
     func = funcs[get_part(0, 6)];
-    // imms = to_string(get_part_signed(0, 16));
+    imms = to_string(get_part_signed(0, 16));
     immu = to_string(get_part(0, 16));
     pseudo = to_string(get_part(0, 26));
     first = op != "" ? op : func;
 
     if (false)
-      cout << "tye: ";
-    else if (regex_search(first, regex("ui$")))
-      type = "ImmediateUnsigned";
+      return; else if (regex_search(first, regex("ui$"))) type =
+                 "ImmediateUnsigned";
     else if (regex_search(first, regex("u$")))
       type = "RegisterUnsigned";
     else if (regex_search(first, regex("i$")))
