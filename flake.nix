@@ -8,17 +8,29 @@
     let
       inherit (nix-lib-monadam) lib;
       labs = lib.paths.getDirs ./lab;
-    in {
+    in
+    {
       packages = lib.flakes.forAllSystems ({ pkgs }:
-        pkgs.lib.attrsets.mergeAttrsList (map (lab: {
-          "lab-${lab}" = pkgs.writeShellScriptBin "lab-${lab}" ''
-            LABPATH=${./lab}/${lab}/
-            cd ``$LABPATH
-            ${pkgs.mars-mips}/bin/Mars p .
-          '';
-        }) labs));
+        pkgs.lib.attrsets.mergeAttrsList (map
+          (lab: {
+            "lab-${lab}" = pkgs.writeShellScriptBin "lab-${lab}" ''
+              LABPATH=${./lab}/${lab}/
+              cd ``$LABPATH
+              ${pkgs.mars-mips}/bin/Mars p .
+            '';
+          })
+          labs));
       devShells = lib.flakes.forAllSystems ({ pkgs }: {
-        default = pkgs.mkShell { packages = with pkgs; [ mars-mips gcc ]; };
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            # mips
+            mars-mips
+            # logisim
+            logisim-evolution
+            # other
+            gcc
+          ];
+        };
       });
     };
 }
