@@ -1,0 +1,201 @@
+#+title: Notes
+* midterm 1
+** two complement
++ same hardware works for both magnitude only & 2s-complement
+*** -12
+0000 1100       12
+1111 0011       invert
+1111 1110       add 1
+*** 0x92 (2-complement)
+1001 0010
+0110 1101
+0110 1110 = 2 + 4 + 8 + 32 + 64
+** un/signed
+$t1 = 111111
+$t2 = 000001
++ $t1 < $t2 (signed)
++ $t1 > $t2 (unsigned)
+** shift
+$t1 = 00001011
+sll $t2, $t1, 1
++ $t2 = 00010110
+** question
+After the following instructions, what will the s0 register contain? Write your answer in hexadecimal.
+#+begin_src asm
+      li    $s0, 0x07
+      sll   $s0, $s0, 2         # shift left 2 bits
+#+end_src
+0x07 = 0000 0111
+7*4 = 28
++ 0001 1100
+  = 0x1C
+** q2
+0000 1010 = 10
+0000 1100 = 12
+========= and
+0000 1000 = 08
+========= or
+0000 1110 = 14
+** mips
+#+begin_src asm
+        .data
+    equal_msg:
+        .asciiz "equal"
+    unequal_msg:
+        .asciiz "unequal"
+    a:  .word   10
+    b:  .word   20
+
+        .text
+    main:
+        la      $t7, a          # t7 -> a
+        lw      $t0, 0($t7)     # t0 = a
+        la      $t7, b          # t7 -> b
+        lw      $t1, 0($t7)     # t1 = b
+        bne     $t0, $t1, skip
+        li      $v0, 4          # print string
+        la      $a0, equal_msg
+        syscall
+
+    skip:
+        li      $v0, 4          # print string
+        la      $a0, unequal_msg
+        syscall
+#+end_src
+** shift
+*** sll: for unsigned
+*** srl: for unsigned
+*** sra: for signed
+*** sla: for signed /not allowed/
+** li = lui -> ori
+** la = lui -> ori
+** diagram
+|-------------+---------+---------+---------|
+|             | cpu     | memory  | i/o     |
+|-------------+---------+---------+---------|
+| address bus | !!'.... | ..!!'.. | ....'!! |
+| data bus    | !'..... | ..!'... | .....'! |
+| control bus | '...... | ..'.... | ......' |
+|-------------+---------+---------+---------|
+
+** sw $s0, 0($t0)
+store word at $s0 into $t0
+** branch instructions beq, bqez, ...
++ are immediate load expressions
++ relative address
+** jump instruction j, jal
++ absolute address
+
+** multiply
+#+begin_src
+         1100
+      x  1100
+      =======
+         0000
+        0000
+       1100
+   +  1100
+   ==========
+     10010000
+     = 128 + 16
+     = 144
+#+end_src
+** divide
+*** get one's digit
+#+begin_src mips
+.text
+main:
+            li $s0 95
+            li $t1 10
+            div $s0 $t1
+            mfhi $t0
+            jal print_int
+            b exit
+print_int:
+            li $v0 1
+            la $a0 ($t0)
+            syscall
+            jr $ra
+exit:
+#+end_src
+
+:results:
+5
+:end:
+
+:results:
+5
+:end:
+
+** print hex
+*** mips
+#+begin_src mips :results drawer
+.data
+hex_digit_table:
+    .byte '0' '1' '2' '3' '4' '5' '6' '7'
+    .byte '8' '9' 'A' 'B' 'C' 'D' 'E' 'F'
+.text
+main:
+            li $a0 0xCAFEF00D
+            jal print_hex
+            li $v0 10
+            syscall
+print_hex:
+            move $s0 $a0
+            li $s2 28
+            la $s3 hex_digit_table
+loop:
+            srlv $s1 $s0 $s2
+            andi $a0 $s1 0x0f
+            add $s4 $s3 $a0
+            lb $a0 ($s4)
+            li $v0 11
+            syscall
+            addi $s2, $s2, -4
+            bgez $s2 loop
+            jr $ra
+#+end_src
+
+:results:
+CAFEF00D
+:end:
+
+*** c++
+#+begin_src cpp :results drawer
+#include <iostream>
+using namespace std;
+
+void print_hex(int);
+
+int main() {
+    print_hex(0xcafef00d);
+    cout << endl;
+    return 0;
+}
+
+static char hex_digit_table[] = {
+    '0','1','2','3','4','5','6','7',
+    '8','9','A','B','C','D','E','F'
+};
+
+void print_hex(int num) {
+    for (int shamt = 28; shamt >= 0; shamt -=4){
+        int x = num >> shamt;
+        cout << (hex_digit_table[( num >> shamt ) & 0x0f]);
+    }
+}
+
+#+end_src
+
+:results:
+CAFEF00D
+:end:
+** stack
+** little endian
+storing data in which the least significant byte is placed at the lowest memory address.
+** big endian
+storing data in which the least significant byte is placed at the highest memory address.
+* midterm 2
+** data hazards
+** structural hazards
+** control hazards

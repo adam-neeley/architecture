@@ -1,6 +1,0 @@
-#+title: Exam 1
-#+include:./02.org
-#+include:./03.org
-#+include:./04.org
-#+include:./05.org
-#+include:./06.org
