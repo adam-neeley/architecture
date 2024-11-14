@@ -196,6 +196,23 @@ storing data in which the least significant byte is placed at the lowest memory 
 ** big endian
 storing data in which the least significant byte is placed at the highest memory address.
 * midterm 2
-** data hazards
-** structural hazards
-** control hazards
+** pipelining
+*** data hazards
+when one instruction's input relies on another's output, but are being pipelined simultaneously
+**** delay slot
+**** stall
+aka "hardware interlock"
+*MIPS*:
++ Microprocessor
++ (without) Interlocked
++ Pipeline
++ Steps
+*** structural hazards
++ general solution: add hardware
++ storing at a memory location while reading from memory location
+(SW MEM + any IF: split cache)
++ loading memory while reading from memory location?
++ another solution (not as good): stall
+*** control hazards
++ we don't know the result of a conditional branch
+  so don't know which instruction to run
