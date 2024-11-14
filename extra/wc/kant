@@ -1,0 +1,166 @@
+   This is a test file that has lots of data in it.
+It's got    a bunch of      consecutive   spaces to test simplistic
+implementations of wc.  The file starts with some spaces, because
+failing to count initial spaces is a common bug in wc implementations.
+
+
+
+It's also got a few consecutive newlines, as you can see.  And look,
+here's	a tab character! Two		tabs in a row, even. At the very end
+of the file, there's a line containing just five spaces.
+
+In the meantime, let's enjoy a hearty reading of some 18th-century philosophy.
+Here follows an excerpt from The Critique of Pure Reason by Immanuel Kant.
+
+
+P 105
+THE TRANSCENDENTAL CLUE TO THE DISCOVERY OF
+ALL PURE CONCEPTS OF THE UNDERSTANDING
+Section I
+THE LOGICAL EMPLOYMENT OF THE UNDERSTANDING
+The understanding has thus far been explained merely
+negatively, as a non-sensible faculty of knowledge. Now since
+without sensibility we cannot have any intuition, understanding A68
+cannot be a faculty of intuition. But besides intuition there
+is no other mode of knowledge except by means of concepts. B93
+The knowledge yielded by understanding, or at least by the
+human understanding, must therefore be by means of concepts,
+and so is not intuitive, but discursive. Whereas all intuitions,
+as sensible, rest on affections, concepts rest on functions. By
+'function' I mean the unity of the act of bringing various 
+representations under one common representation. Concepts are
+based on the spontaneity of thought, sensible intuitions on the
+receptivity of impressions. Now the only use which the 
+understanding can make of these concepts is to judge by means of
+them. Since no representation, save when it is an intuition,
+is in immediate relation to an object, no concept is ever
+related to an object immediately, but to some other representation
+of it, be that other representation an intuition, or itself
+a concept. Judgment is therefore the mediate knowledge of an
+object, that is, the representation of a representation of it. In
+every judgment there is a concept which holds of many 
+representations, and among them of a given representation that is
+immediately related to an object. Thus in the judgment, 'all
+bodies are divisible', the concept of the divisible applies to
+various other concepts, but is here applied in particular to
+the concept of body, and this concept again to certain appearances A69
+that present themselves to us. These objects, therefore,
+are mediately represented through the concept of divisibility.
+Accordingly, all judgments are functions of unity among our
+P 106
+representations; instead of an immediate representation, a B94
+higher representation, which comprises the immediate 
+representation and various others, is used in knowing the object,
+and thereby much possible knowledge is collected into one.
+Now we can reduce all acts of the understanding to judgments,
+and the understanding may therefore be represented
+as a faculty of judgment. For, as stated above, the 
+understanding is a faculty of thought. Thought is knowledge by
+means of concepts. But concepts, as predicates of possible
+judgments, relate to some representation of a not yet determined
+object. Thus the concept of body means something, for
+instance, metal, which can be known by means of that concept.
+It is therefore a concept solely in virtue of its 
+comprehending other representations, by means of which it can
+relate to objects. It is therefore the predicate of a possible
+judgment, for instance, 'every metal is a body'. The functions
+of the understanding can, therefore, be discovered if we can
+give an exhaustive statement of the functions of unity in
+judgments. That this can quite easily be done will be shown
+in the next section.
+THE CLUE TO THE DISCOVERY OF ALL PURE A70 B95
+CONCEPTS OF THE UNDERSTANDING
+Section 2
+$9
+THE LOGICAL FUNCTION OF THE UNDERSTANDING IN
+JUDGMENTS
+If we abstract from all content of a judgment, and consider
+only the mere form of understanding, we find that the
+function of thought in judgment can be brought under four
+heads, each of which contains three moments. They may be
+conveniently represented in the following table:
+P 107
+I
+Quantity of Judgments
+Universal
+Particular
+Singular 
+II
+Quality
+Affirmative
+Negative
+Infinite
+III
+Relation
+Categorical
+Hypothetical
+Disjunctive
+IV
+Modality
+Problematic
+Assertoric
+Apodeictic
+As this division appears to depart in some, though not in B96
+any essential respects, from the technical distinctions ordinarily
+recognised by logicians, the following observations may A71
+serve to guard against any possible misunderstanding.
+1. Logicians are justified in saying that, in the employment
+of judgments in syllogisms, singular judgments can
+be treated like those that are universal. For, since they
+have no extension at all, the predicate cannot relate to part
+only of that which is contained in the concept of the subject,
+and be excluded from the rest. The predicate is valid of that
+concept, without any such exception, just as if it were a
+general concept and had an extension to the whole of which
+the predicate applied. If, on the other hand, we compare a
+singular with a universal judgment, merely as knowledge,
+in respect of quantity, the singular stands to the universal as
+unity to infinity, and is therefore in itself essentially different
+from the universal. If, therefore, we estimate a singular judgment
+(judicium singulare), not only according to its own inner
+validity, but as knowledge in general, according to its quantity
+in comparison with other knowledge, it is certainly different
+from general judgments (judicia communia), and in a complete
+table of the moments of thought in general deserves a
+separate place -- though not, indeed, in a logic limited to the
+use of judgments in reference to each other. B97
+P 108
+2. In like manner infinite judgments must, in transcendental
+logic, be distinguished from those that are affirmative,
+although in general logic they are rightly classed with A72
+them, and do not constitute a separate member of the division.
+General logic abstracts from all content of the predicate (even
+though it be negative); it enquires only whether the predicate
+be ascribed to the subject or opposed to it. But transcendental
+logic also considers what may be the worth or content of a
+logical affirmation that is thus made by means of a merely
+negative predicate, and what is thereby achieved in the way
+of addition to our total knowledge. If I should say of the soul,
+'It is not mortal', by this negative judgment I should at least
+have warded off error. Now by the proposition, 'The soul
+is non-mortal', I have, so far as the logical form is concerned,
+really made an affirmation. I locate the soul in the unlimited
+sphere of non-mortal beings. Since the mortal constitutes
+one part of the whole extension of possible beings, and the
+non-mortal the other, nothing more is said by my proposition
+than that the soul is one of the infinite number of things which
+remain over when I take away all that is mortal. The infinite
+sphere of all that is possible is thereby only so far limited that
+the mortal is excluded from it, and that the soul is located B98
+in the remaining part of its extension. But, even allowing
+for such exclusion, this extension still remains infinite, and
+several more parts of it may be taken away without the concept
+of the soul being thereby in the least increased, or  A73
+determined in an affirmative manner. These judgments, though
+infinite in respect of their logical extension, are thus, in respect
+of the content of their knowledge, limitative only, and cannot
+therefore be passed over in a transcendental table of all
+moments of thought in judgments, since the function of the
+understanding thereby expressed may perhaps be of 
+importance in the field of its pure a priori knowledge.
+
+
+
+
+
+     
