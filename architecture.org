@@ -1,199 +1,426 @@
 #+title: Architecture
-* [X] Week 1
-** [X] Mysteries
-** [X] Binary and base conversions
-*** [X] §2.4,2.2
-* [X] Week 2
-** [X] Binary addition,2’s complement
-*** [X] §3.2
-** [X] Conditional branches
-*** [X] §2.7
-* [X] Week 3
-** [X] Branch pseudoinstructions, ASCII, function call
-*** [X] §2.9,2.13
-** [X] Shift instructions and Boolean operations
-*** [X] §2.6
-* [X] Week 4
-** [X] Bit-manipulation in C, instruction formats
-*** [X] 2.5
-** [X] Instruction formats, li and la are just mov
-* [X] Week 5
-** [X] mul/div, look-up tables
-*** [X] §3.3,3.4
-** [X] The stack, byte-ordering
-*** [X] §2.8
-* [X] Week 6
+#+startup: overview
+* schedule
+** [X] Week 1
+*** [X] Mysteries
+*** [X] Binary and base conversions
+**** [X] §2.4,2.2
+** [X] Week 2
+*** [X] Binary addition,2’s complement
+**** [X] §3.2
+*** [X] Conditional branches
+**** [X] §2.7
+** [X] Week 3
+*** [X] Branch pseudoinstructions, ASCII, function call
+**** [X] §2.9,2.13
+*** [X] Shift instructions and Boolean operations
+**** [X] §2.6
+** [X] Week 4
+*** [X] Bit-manipulation in C, instruction formats
+**** [X] 2.5
+*** [X] Instruction formats, li and la are just mov
+** [X] Week 5
+*** [X] mul/div, look-up tables
+**** [X] §3.3,3.4
+*** [X] The stack, byte-ordering
+**** [X] §2.8
+** [X] Week 6
 :PROPERTIES:
 :ID:       1c50ef92-ba51-40d8-82b7-9522aef6a461
 :END:
-** [X] Memory layout, local variables
+*** [X] Memory layout, local variables
 SCHEDULED: <2024-10-01 Tue>
 :PROPERTIES:
 :ID:       c3c22f1c-a7e0-47af-a73e-45bef1b791b5
 :END:
-** [X] REVIEW
+*** [X] REVIEW
 SCHEDULED: <2024-10-03 Thu>
 :PROPERTIES:
 :ID:       630a6446-87b9-413b-aa62-58aa633cfbdb
 :END:
-* [X] Week 7
+** [X] Week 7
 :PROPERTIES:
 :ID:       18aaaa30-291a-4189-9586-c2d423aaf3c8
 :END:
-** [X] hw 2: disassembler
+*** [X] hw 2: disassembler
 SCHEDULED: <2024-10-08 Tue>
 :PROPERTIES:
 :ID:       e98b0482-441a-4957-ba84-fbbc456ecfb2
 :END:
-** [X] REVIEW
+*** [X] REVIEW
 SCHEDULED: <2024-10-08 Tue>
 :PROPERTIES:
 :ID:       6adfa74f-5134-4063-8614-3da72b46717c
 :END:
-** [X] MIDTERM
+*** [X] MIDTERM
 DEADLINE: <2024-10-10 Thu>
 :PROPERTIES:
 :ID:       5d95e041-03be-4256-8588-4477f7545821
 :END:
-* [X] Week 8
+** [X] Week 8
 :PROPERTIES:
 :ID:       790f82ab-0645-45d4-9301-7f0a82b0e6c1
 :END:
-** [X] IEEE 754 Floating point
+*** [X] IEEE 754 Floating point
 DEADLINE: <2024-10-15 Tue>
 :PROPERTIES:
 :ID:       44360280-7823-4e61-aa58-f60d6714c1b4
 :END:
-*** [X] §3.5
+**** [X] §3.5
 :PROPERTIES:
 :ID:       76ce3ccf-48f5-4f34-b4c4-562a96103cf8
 :END:
-** [X] Weird things about IEEE 754, floating-point instructions
+*** [X] Weird things about IEEE 754, floating-point instructions
 DEADLINE: <2024-10-17 Thu>
 :PROPERTIES:
 :ID:       56c713cb-63a5-44e3-827e-cb8d51e94d18
 :END:
-* [X] Week 9
+** [X] Week 9
 :PROPERTIES:
 :ID:       ac3a14a9-3482-4552-969f-4965ccb6ecb7
 :END:
-** [X] Logic gates
+*** [X] Logic gates
 DEADLINE: <2024-10-22 Tue>
 :PROPERTIES:
 :ID:       b5e71209-841a-4b5f-88e7-314ba385e876
 :END:
-** [X] More logic gates, multiplexers, comparator
+*** [X] More logic gates, multiplexers, comparator
 DEADLINE: <2024-10-24 Thu>
 :PROPERTIES:
 :ID:       3099f997-3a66-47d6-95c9-62e2975cbb3e
 :END:
-* [X] Week 10
+** [X] Week 10
 :PROPERTIES:
 :ID:       13d4952e-06af-4c3f-95d1-5471b00ad378
 :END:
-** [X] Floating-point gaps, Datapath
+*** [X] Floating-point gaps, Datapath
 DEADLINE: <2024-10-29 Tue>
 :PROPERTIES:
 :ID:       3d8f5163-36ca-4c70-af31-958d6d2791c6
 :END:
-*** [X] §4.1–3
+**** [X] §4.1–3
 DEADLINE: <2024-10-29 Tue>
 :PROPERTIES:
 :ID:       d552abec-845a-4255-9d5a-4ac4e1b0ddec
 :END:
-** [X] Datapath and control
+*** [X] Datapath and control
 DEADLINE: <2024-10-31 Thu>
 :PROPERTIES:
 :ID:       4f631502-7731-453a-955a-43c17d70104c
 :END:
-*** [X] §4.4,4.5
+**** [X] §4.4,4.5
 DEADLINE: <2024-10-31 Thu>
 :PROPERTIES:
 :ID:       35efae44-4e85-46a5-b55f-3eeb24a2084f
 :END:
-* [ ] Week 11
+** [ ] Week 11
 :PROPERTIES:
 :ID:       bb79c8ad-cc2c-40a8-8be8-359c30b10a26
 :END:
-** [X] Control and pipelining, metric prefixes
+*** [X] Control and pipelining, metric prefixes
 DEADLINE: <2024-11-05 Tue>
 :PROPERTIES:
 :ID:       bda1fcae-fecc-4752-9b67-0cecf02ffac8
 :END:
-*** [X] §4.6
+**** [X] §4.6
 :PROPERTIES:
 :ID:       2689d6cd-cdf6-42b5-a676-972ca97e05d4
 :END:
-** [ ] Pipeline registers, pipeline hazards
+*** [ ] Pipeline registers, pipeline hazards
 DEADLINE: <2024-11-07 Thu>
 :PROPERTIES:
 :ID:       4a2b9e5f-a840-497c-80dc-137b275151f6
 :END:
-*** [ ] §4.7–9,4.11(optional)
+**** [ ] §4.7–9,4.11(optional)
 :PROPERTIES:
 :ID:       328d901c-0f22-47ae-94c6-80bc3ef86a9e
 :END:
-* [ ] Week 12
+** [ ] Week 12
 :PROPERTIES:
 :ID:       7fb41056-cfaf-4c36-80e5-f987b2599ffa
 :END:
-** [ ] Intro to caching
+*** [ ] Intro to caching
 :PROPERTIES:
 :ID:       e99ac3c7-d928-47c3-92a9-ba9890924650
 :END:
-*** [ ] §5.1,5.2
+**** [ ] §5.1,5.2
 :PROPERTIES:
 :ID:       e713222e-c8e1-48b7-a4ac-c2cf3a7c8c04
 :END:
-** [ ] Cache types, cache misses
+*** [ ] Cache types, cache misses
 :PROPERTIES:
 :ID:       ccf36c65-4901-48a2-a8ea-da65c9302ecd
 :END:
-* [ ] Week 13
+** [ ] Week 13
 :PROPERTIES:
 :ID:       7a4e986f-01ec-4772-9947-7381de31d575
 :END:
-** [ ] Block-replacement policies, write-through, write-back
+*** [ ] Block-replacement policies, write-through, write-back
 :PROPERTIES:
 :ID:       523e5b27-88b2-4060-b8f0-e618fa850cd5
 :END:
-** [ ] AMAT, Amdahl’s Law
+*** [ ] AMAT, Amdahl’s Law
 :PROPERTIES:
 :ID:       bf02aef3-2e25-488e-a070-b6d69748c758
 :END:
-* [ ] Week 14
+** [ ] Week 14
 :PROPERTIES:
 :ID:       6222ef9e-da77-43b5-9d28-d51a3aa326a7
 :END:
-** [ ] OPEN
+*** [ ] OPEN
 :PROPERTIES:
 :ID:       85907ab8-c3af-4cd1-ad16-2e19692adc2a
 :END:
-** [ ] OPEN
+*** [ ] OPEN
 :PROPERTIES:
 :ID:       5627f18b-2c6b-4a2f-b63b-4388d88523f6
 :END:
-* [ ] Week 15
+** [ ] Week 15
 :PROPERTIES:
 :ID:       26d6c543-013a-478b-8e19-bce59421103c
 :END:
-** [ ] REVIEW
+*** [ ] REVIEW
 :PROPERTIES:
 :ID:       e92cce90-a7c6-4005-a588-5814fa05ae62
 :END:
-** [ ] REVIEW
+*** [ ] REVIEW
 :PROPERTIES:
 :ID:       fd755389-ffa4-4d94-90f7-62ec2e974d9a
 :END:
-* [ ] Week 16
+** [ ] Week 16
 :PROPERTIES:
 :ID:       b605f36b-4bc8-409e-b536-4598772911a1
 :END:
-** [ ] FINAL EXAM
+*** [ ] FINAL EXAM
 :PROPERTIES:
 :ID:       a25858e9-c648-475a-9b9c-5e9aeccd7ba6
 :END:
-* [ ] *Inbox
-:PROPERTIES:
-:ID:       7b8bb650-484a-4c10-a465-5016e708442e
-:END:
+
+* bits
+** two complement
++ same hardware works for both magnitude only & 2s-complement
+*** -12
+0000 1100       12
+1111 0011       invert
+1111 1110       add 1
+*** 0x92 (2-complement)
+1001 0010
+0110 1101
+0110 1110 = 2 + 4 + 8 + 32 + 64
+** un/signed
+$t1 = 111111
+$t2 = 000001
++ $t1 < $t2 (signed)
++ $t1 > $t2 (unsigned)
+** endian
+*** little
+storing data in which the least significant byte is placed at the lowest memory address.
+*** big
+storing data in which the least significant byte is placed at the highest memory address.
+* bit ops
+** q2
+0000 1010 = 10
+0000 1100 = 12
+========= and
+0000 1000 = 08
+========= or
+0000 1110 = 14
+** shift
+$t1 = 00001011
+sll $t2, $t1, 1
++ $t2 = 00010110
+** question
+After the following instructions, what will the s0 register contain? Write your answer in hexadecimal.
+#+begin_src asm
+      li    $s0, 0x07
+      sll   $s0, $s0, 2         # shift left 2 bits
+#+end_src
+0x07 = 0000 0111
+7*4 = 28
++ 0001 1100
+  = 0x1C
+* mips
+#+begin_src asm
+        .data
+    equal_msg:
+        .asciiz "equal"
+    unequal_msg:
+        .asciiz "unequal"
+    a:  .word   10
+    b:  .word   20
+
+        .text
+    main:
+        la      $t7, a          # t7 -> a
+        lw      $t0, 0($t7)     # t0 = a
+        la      $t7, b          # t7 -> b
+        lw      $t1, 0($t7)     # t1 = b
+        bne     $t0, $t1, skip
+        li      $v0, 4          # print string
+        la      $a0, equal_msg
+        syscall
+
+    skip:
+        li      $v0, 4          # print string
+        la      $a0, unequal_msg
+        syscall
+#+end_src
+** li = lui -> ori
+** la = lui -> ori
+** sw $s0, 0($t0)
+store word at $s0 into $t0
+** branch instructions beq, bqez, ...
++ are immediate load expressions
++ relative address
+** jump instruction j, jal
++ absolute address
+** multiply
+#+begin_src
+         1100
+      x  1100
+      =======
+         0000
+        0000
+       1100
+   +  1100
+   ==========
+     10010000
+     = 128 + 16
+     = 144
+#+end_src
+** divide
+*** get one's digit
+#+begin_src mips
+.text
+main:
+            li $s0 95
+            li $t1 10
+            div $s0 $t1
+            mfhi $t0
+            jal print_int
+            b exit
+print_int:
+            li $v0 1
+            la $a0 ($t0)
+            syscall
+            jr $ra
+exit:
+#+end_src
+
+:results:
+5
+:end:
+
+:results:
+5
+:end:
+
+** print hex
+*** mips
+#+begin_src mips :results drawer
+.data
+hex_digit_table:
+    .byte '0' '1' '2' '3' '4' '5' '6' '7'
+    .byte '8' '9' 'A' 'B' 'C' 'D' 'E' 'F'
+.text
+main:
+            li $a0 0xCAFEF00D
+            jal print_hex
+            li $v0 10
+            syscall
+print_hex:
+            move $s0 $a0
+            li $s2 28
+            la $s3 hex_digit_table
+loop:
+            srlv $s1 $s0 $s2
+            andi $a0 $s1 0x0f
+            add $s4 $s3 $a0
+            lb $a0 ($s4)
+            li $v0 11
+            syscall
+            addi $s2, $s2, -4
+            bgez $s2 loop
+            jr $ra
+#+end_src
+
+:results:
+CAFEF00D
+:end:
+
+*** c++
+#+begin_src cpp :results drawer
+#include <iostream>
+using namespace std;
+
+void print_hex(int);
+
+int main() {
+    print_hex(0xcafef00d);
+    cout << endl;
+    return 0;
+}
+
+static char hex_digit_table[] = {
+    '0','1','2','3','4','5','6','7',
+    '8','9','A','B','C','D','E','F'
+};
+
+void print_hex(int num) {
+    for (int shamt = 28; shamt >= 0; shamt -=4){
+        int x = num >> shamt;
+        cout << (hex_digit_table[( num >> shamt ) & 0x0f]);
+    }
+}
+
+#+end_src
+
+:results:
+CAFEF00D
+:end:
+* diagram
+|-------------+---------+---------+---------|
+|             | cpu     | memory  | i/o     |
+|-------------+---------+---------+---------|
+| address bus | !!'.... | ..!!'.. | ....'!! |
+| data bus    | !'..... | ..!'... | .....'! |
+| control bus | '...... | ..'.... | ......' |
+|-------------+---------+---------+---------|
+
+* TODO stack
+* pipelining
+** data hazards
+when one instruction's input relies on another's output, but are being pipelined simultaneously
+*** delay slot
+*** stall
+aka "hardware interlock"
+*MIPS*:
++ Microprocessor
++ (without) Interlocked
++ Pipeline
++ Steps
+** structural hazards
++ general solution: add hardware
++ storing at a memory location while reading from memory location
+(SW MEM + any IF: split cache)
++ loading memory while reading from memory location?
++ another solution (not as good): stall
+** control hazards
++ we don't know the result of a conditional branch
++ so don't know which instruction to run
+* caching
+** memory
+*** dram
+**** recharges capacitor
+capacitor stores bit
++ transistors take more space
+**** cheapest
+** memory hierarchy
++ cache
++ registers
++ main memory
+** locality
+*** temporal
++ recently used memory
+*** spatial
++ closely related memory
